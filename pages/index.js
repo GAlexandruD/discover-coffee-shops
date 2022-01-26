@@ -1,7 +1,10 @@
 import Head from "next/head";
 import Image from "next/image";
 import Banner from "../components/banner";
+import Card from "../components/card";
 import styles from "../styles/Home.module.css";
+
+import coffeeStores from "../data/coffee-stores.json";
 
 export default function Home() {
   const handleOnBannerBtnClick = () => {
@@ -23,6 +26,20 @@ export default function Home() {
           buttonText="View stores nearby"
           handleOnClick={handleOnBannerBtnClick}
         />
+        <div className={styles.heroImage}>
+          <Image src="/static/hero-image.png" width={700} height={400} />
+        </div>
+        <div className={styles.cardLayout}>
+          {coffeeStores.map(({ id, name, imgUrl, websiteUrl }) => (
+            <Card
+              key={id}
+              name={name}
+              imgUrl={imgUrl}
+              href={websiteUrl}
+              className={styles.card}
+            />
+          ))}
+        </div>
       </main>
     </div>
   );
